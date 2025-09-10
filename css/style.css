@@ -1796,59 +1796,95 @@ footer .copyright-box {
 
 
 /* New testimonial */
-/* New testimonial */
+/* Minimal responsive patch for your original HTML */
 .testimonials-section {
-  position: relative;
+  /* override inline max-width if you can't remove it from HTML */
+  width: 100% !important;
+  max-width: 1200px !important;    /* cap the width but allow full width on small screens */
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  box-sizing: border-box;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* ✅ reduced min width */
-  gap: 2rem;
-  padding: 4rem 2rem;
+  /* crucial: allow columns to shrink below a fixed minimum to avoid overflow */
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  gap: 1.5rem;
+  padding: 2.5rem 1rem;            /* shrink padding for small screens */
   color: #f0f0f0;
+  position: relative;
   z-index: 0;
-  overflow: visible; /* ✅ prevents clipping */
-  margin-bottom: 0; /* ✅ avoids cutting off content */
+  overflow: visible !important;    /* ensure nothing is clipped */
 }
 
+/* keep your existing ::before but ensure it doesn't capture clicks/overflow */
 .testimonials-section::before {
   content: '';
   position: absolute;
   inset: 0;
-  /* background: linear-gradient(135deg, rgba(0, 13, 33, 0.85), rgba(0, 13, 33, 0.85)); */
   z-index: 1;
+  pointer-events: none;
 }
 
+/* testimonial card */
 .testimonial {
   position: relative;
   z-index: 2;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
   background: linear-gradient(135deg, #4834d4, #0097a7);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 1.5rem;
-  padding: 2rem;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25);
+  padding: 1.75rem;
+  box-shadow: 0 15px 25px rgba(0,0,0,0.25);
   backdrop-filter: blur(12px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 100%; /* ✅ ensures testimonials shrink correctly */
-  box-sizing: border-box; /* ✅ prevents overflow */
+  overflow-wrap: anywhere; /* prevent long words from overflowing */
+  word-break: break-word;
 }
 
+/* slightly smaller on hover for tiny screens? keep transform but it's fine */
 .testimonial:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 20px 30px rgba(0,0,0,0.35);
 }
 
+/* content tweaks */
+.testimonial-content p {
+  margin: 0 0 0.6rem 0;
+  line-height: 1.4;
+  hyphens: auto;
+}
 .testimonial-content h4 {
+  margin: 0;
   color: white;
+  font-weight: 600;
 }
 
-/* ✅ Responsive tweak for very small devices */
-@media (max-width: 480px) {
+/* Mobile-specific rules */
+@media (max-width: 600px) {
   .testimonials-section {
-    grid-template-columns: 1fr; /* stack in one column */
-    padding: 2rem 1rem;
+    grid-template-columns: 1fr; /* force single column stack */
+    gap: 1rem;
+    padding: 1.6rem 0.8rem;
   }
 
   .testimonial {
-    padding: 1.5rem;
+    padding: 1rem;
+    border-radius: 1.1rem;
+    font-size: 0.97rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .testimonials-section {
+    padding: 1rem 0.5rem;
+    gap: 0.6rem;
+  }
+
+  .testimonial {
+    padding: 0.7rem;
+    font-size: 0.9rem;
   }
 }
 
