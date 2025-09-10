@@ -1796,16 +1796,17 @@ footer .copyright-box {
 
 
 /* New testimonial */
+/* New testimonial */
 .testimonials-section {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* ✅ reduced min width */
   gap: 2rem;
   padding: 4rem 2rem;
   color: #f0f0f0;
   z-index: 0;
-  overflow: hidden;
-  margin-bottom: -50px;
+  overflow: visible; /* ✅ prevents clipping */
+  margin-bottom: 0; /* ✅ avoids cutting off content */
 }
 
 .testimonials-section::before {
@@ -1819,29 +1820,36 @@ footer .copyright-box {
 .testimonial {
   position: relative;
   z-index: 2;
-  /* background: rgba(255, 255, 255, 0.05); */
-  /* background: linear-gradient(135deg, #4834d4, #0097a7); */
   background: linear-gradient(135deg, #4834d4, #0097a7);
-
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1.5rem;
   padding: 2rem;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(12px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%; /* ✅ ensures testimonials shrink correctly */
+  box-sizing: border-box; /* ✅ prevents overflow */
 }
 
 .testimonial:hover {
   transform: translateY(-5px);
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.35);
 }
-.testimonial-content {
-   h4{
-    color: white;
-   }
 
- 
+.testimonial-content h4 {
+  color: white;
+}
 
+/* ✅ Responsive tweak for very small devices */
+@media (max-width: 480px) {
+  .testimonials-section {
+    grid-template-columns: 1fr; /* stack in one column */
+    padding: 2rem 1rem;
+  }
+
+  .testimonial {
+    padding: 1.5rem;
+  }
 }
 
 
