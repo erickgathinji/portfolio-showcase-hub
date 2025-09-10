@@ -1866,7 +1866,8 @@ footer .copyright-box {
   .testimonials-section {
     grid-template-columns: 1fr; /* force single column stack */
     gap: 1rem;
-    padding: 1.6rem 0.8rem;
+    /* padding: 1.6rem 0.8rem; */
+    padding: 1.6rem;
   }
 
   .testimonial {
@@ -1878,7 +1879,8 @@ footer .copyright-box {
 
 @media (max-width: 360px) {
   .testimonials-section {
-    padding: 1rem 0.5rem;
+    /* padding: 1rem 0.5rem; */
+    padding: 1rem;
     gap: 0.6rem;
   }
 
