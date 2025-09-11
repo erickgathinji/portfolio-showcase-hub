@@ -809,6 +809,7 @@ a:hover {
 ======================================*/
 #work{
         margin-top: -50px;
+    
 }
 .work-box {
     margin-bottom: 3rem;
@@ -1716,10 +1717,11 @@ footer .copyright-box {
     }
 
     a.resume-new-outline:hover {
-        background: transparent;
-        color: #000D21 !important;
-        transition: all 0.35s ease-in-out !important;
-        outline: 2px solid #A1B8C7;
+        background: #05769c;
+        /* color: #000D21 !important; */
+        color: white !important;
+        transition: all 0.3s ease-in-out !important;
+        outline: none;
         /* border: 0.5px solid #c2cdd8; */
     }
 
